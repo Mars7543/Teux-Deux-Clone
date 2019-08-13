@@ -1,0 +1,23 @@
+{
+  "name": "teux-deux-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mars7543/Teux-Deux-Clone.git"
+  },
+  "author": "Miguel Roberts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mars7543/Teux-Deux-Clone/issues"
+  },
+  "homepage": "https://github.com/Mars7543/Teux-Deux-Clone#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
