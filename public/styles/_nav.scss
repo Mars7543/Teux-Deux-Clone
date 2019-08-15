@@ -1,0 +1,21 @@
+.material-icons.drop_down {
+    vertical-align: bottom;
+    font-size: 18px !important;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-color: $light-blue;
+
+    padding: 12px 25px;
+
+    font-size: $text-lg;
+    color: white
+}
+
+.login {
+    cursor: pointer;
+}

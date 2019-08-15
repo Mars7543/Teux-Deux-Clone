@@ -1,2 +1,10 @@
+html { 
+    font-size: 62.5%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+}
 
 /*# sourceMappingURL=/styles.8986bff4.css.map */
