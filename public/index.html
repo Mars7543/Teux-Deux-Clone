@@ -17,58 +17,25 @@
         </nav>
     </header>
 
-    <main>
-        <i class="material-icons navigation prev">chevron_left</i>
-        <div class="list">
-            <div class="header">
-                <div class="day">Monday</div>
-                <div class="date">August 12, 2019</div>
-            </div>
-            <div class="content">
-                <div class="item" contenteditable></div><div class="item-divider"></div>
-            </div>
-        </div>
-        <hr>
-        <div class="list">
-            <div class="header">
-                <div class="day">Tuesday</div>
-                <div class="date">August 13, 2019</div>
-            </div>
-            <div class="content">
-                <div class="item" contenteditable></div><div class="item-divider"></div>
-            </div>
-        </div>
-        <hr>
-        <div class="list">
-            <div class="header">
-                <div class="day">Wednesday</div>
-                <div class="date">August 14, 2019</div>
-            </div>
-            <div class="content">
-                <div class="item" contenteditable></div><div class="item-divider"></div>
-            </div>
-        </div>
-        <hr>
-        <div class="list">
-            <div class="header">
-                <div class="day">Thursday</div>
-                <div class="date">August 15, 2019</div>
-            </div>
-            <div class="content">
-                <div class="item" contenteditable></div><div class="item-divider"></div>
-            </div>
-        </div>
-        <hr>
-        <div class="list">
-            <div class="header">
-                <div class="day">Friday</div>
-                <div class="date">August 16, 2019</div>
-            </div>
-            <div class="content">
-                <div class="item" contenteditable></div><div class="item-divider"></div>
-            </div>
-        </div>
-        <i class="material-icons navigation next">chevron_right</i>
+    <main id="listModule">
+        <template id="list-template">
+            <i class="material-icons navigation prev">chevron_left</i>
+            {{#days}}
+                <div class="list">
+                    <div class="header">
+                        <div class="day">{{day}}</div>
+                        <div class="date">{{date}}</div>
+                    </div>
+                    <div class="content">
+                        {{#items}}
+                            <div class="item {{#completed}}completed{{/completed}}" data-item-id="{{id}}" >{{item}}</div><div class="item-divider"></div>
+                        {{/items}}
+                    </div>
+                </div>
+                {{#hr}}<hr>{{/hr}}
+            {{/days}}
+            <i class="material-icons navigation next">chevron_right</i>
+        </template>
     </main>
 
     <script src="scripts/index.js"></script>

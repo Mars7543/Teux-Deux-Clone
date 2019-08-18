@@ -1,0 +1,80 @@
+[
+    {
+        "day": "Saturday",
+        "date": "August 17, 2019",
+        "items": [
+            { 
+                "item": "Item 1", 
+                "completed": true,
+                "id": "1"
+            },
+            { 
+                "item": "Item 2", 
+                "completed": true,
+                "id": "2"
+            },
+            { 
+                "item": "Item 3", 
+                "completed": false,
+                "id": "3"
+            }
+        ],
+        "hr": true
+    },
+    {
+        "day": "Sunday",
+        "date": "August 18, 2019",
+        "items": [
+            { 
+                "item": "Item 11", 
+                "completed": false,
+                "id": "4"
+            },
+            { 
+                "item": "Item 12", 
+                "completed": false,
+                "id": "5"
+            }
+        ],
+        "hr": true
+    },
+    {
+        "day": "Monday",
+        "date": "August 18, 2019",
+        "items": [
+            { 
+                "item": "Item 11", 
+                "completed": false,
+                "id": "6"
+            },
+            { 
+                "item": "Item 12", 
+                "completed": false,
+                "id": "7"
+            },
+            { 
+                "item": "Item 13", 
+                "completed": false,
+                "id": "8"
+            }
+        ],
+        "hr": true
+    },
+    {
+        "day": "Tuesday",
+        "date": "August 19, 2019",
+        "items": [
+            { 
+                "item": "Item 21", 
+                "completed": false,
+                "id": "9"
+            }
+        ],
+        "hr": true
+    },
+    {
+        "day": "Wednesday",
+        "date": "August 19, 2019",
+        "items": []
+    }
+]
