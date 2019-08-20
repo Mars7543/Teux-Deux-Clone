@@ -8,8 +8,6 @@
     <title>Teux-Duex-Clone</title>
 </head>
 <body>
-    <!-- TODO: Create | Mon | Tue | Wed | Thur | Fri | Setup + Todolists for Each Day (no db yet just front-end) -->
-
     <header>
         <nav>
             <div class="title"><a href="/">Teux-Duex-Clone</a></div>
@@ -19,7 +17,7 @@
 
     <main id="listModule">
         <template id="list-template">
-            <i class="material-icons navigation prev">chevron_left</i>
+            <i class="material-icons navigation prev pointer">chevron_left</i>
             {{#days}}
                 <div class="list">
                     <div class="header">
@@ -28,13 +26,17 @@
                     </div>
                     <div class="content">
                         {{#items}}
-                            <div class="item {{#completed}}completed{{/completed}}" data-item-id="{{id}}" >{{item}}</div><div class="item-divider"></div>
+                            <i class="material-icons item-edit pointer">edit</i>
+                            <div class="item {{#completed}}completed{{/completed}} {{#id}}pointer{{/id}}" data-item-id="{{id}}">
+                                {{item}}
+                            </div>
+                            <div class="item-divider"></div>
                         {{/items}}
                     </div>
                 </div>
                 {{#hr}}<hr>{{/hr}}
             {{/days}}
-            <i class="material-icons navigation next">chevron_right</i>
+            <i class="material-icons navigation next pointer">chevron_right</i>
         </template>
     </main>
 

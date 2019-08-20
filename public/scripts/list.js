@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import mustache from "mustache";
-import generateUUID from './generateID';
+import generateUUID from './plugins/generateID';
 
 // TODO: Make _getDays() asynchronous
 // TODO: Implement DB and remove testing code in ajax calls
@@ -18,8 +18,10 @@ const list = (() => {
         
         // add contenteditable prop to items with text in them already
         $.each($('.item'), function() {
-            if ($(this).text() !== '' || $(this).prev().prev().text() !== '' || $(this).prev().length === 0)
-                $(this).prop('contenteditable', 'true'); 
+            const $this = $(this);
+
+            if ($this.text() !== '' || $this.prev().prev().text() !== '' || $this.prev().length === 0)
+                $this.prop('contenteditable', 'true'); 
         });
 
         $('hr').height($('.content').height());
@@ -47,13 +49,14 @@ const list = (() => {
 
     // 'this' refers to item
     function addItem() {
+        const $this = $(this);
         const data = {
-            item: $(this).text(),
-            date: $(this).parent('.content').siblings('.header').children('.date').text()
+            item: $this.text(),
+            date: $this.parent('.content').siblings('.header').children('.date').text()
         };
 
         // if id is empty add item to db
-        if ($(this).attr('data-item-id') === "") {
+        if ($this.attr('data-item-id') === "") {
             $.ajax({
                 type: 'POST',
                 url: '/items',
@@ -61,58 +64,78 @@ const list = (() => {
                 success: function(data) {
                     console.log(data)
                     // add id to item 
-                    $(this).attr('data-item-id', generateUUID()); // delete when db is implemented
+                    $this.attr('data-item-id', generateUUID()); 
+                    $this.css({cursor: 'pointer'});
                 },
                 error: function(error) {
                     console.log(error)
 
-                    $(this).attr('data-item-id', generateUUID()); // delete when db is implemented
+                    $this.attr('data-item-id', generateUUID()); 
+                    $this.css({cursor: 'pointer'});
                 }
             });
         
         // else update item in db
-        } else {
-            const id = $(this).attr('data-item-id');
+        } else _updateItem.call(this, data);
+    }
 
-            $.ajax({
-                type: 'POST',
-                url: `/items/${id}?_method=PUT`,
-                data,
-                success: function(data) {
-                    console.log(data)
-                },
-                error: function(error) {
-                    console.log(error)
-                }
-            });
+    function _updateItem(data) {
+        const $this = $(this);
+
+        const id = $this.attr('data-item-id');
+
+        $.ajax({
+            type: 'POST',
+            url: `/items/${id}?_method=PUT`,
+            data,
+            success: function(data) {
+                console.log(data)
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+    }
+
+    function completeItem() {
+        const $this = $(this);
+        
+        if ($this.hasClass('completed')) {
+            $this.removeClass('completed');
+            _updateItem.call(this, { completed: 'false' });
+
+        } else {
+            $this.addClass('completed');
+            _updateItem.call(this, { completed: 'true' });
         }
     }
 
     // 'this' refers to item
     function deleteItem() {
-        // do some delete stuff in db with id
-        console.log($(this).attr('data-item-id'));
+        const $this = $(this);
+
         $.ajax({
             type: "POST",
             url: '/items?_method=DELETE',
-            data: {id: $(this).attr('data-item-id')},
-            success: function() {
-                $(this).parent('.content').append('<div class="item"></div><div class="item-divider"></div>');
-                $(this).next().remove();
-                $(this).remove();
+            data: {id: $this.attr('data-item-id')},
+            success: (data) => {
+                $this.parent('.content').append('<div class="item"></div><div class="item-divider"></div>');
+                $this.next().remove();
+                $this.remove();
             },
-            error: function(error) {
+            error: (error) => {
                 console.log(error)
 
-                // delete in the future
-                $(this).parent('.content').append('<div class="item"></div><div class="item-divider"></div>');
-                $(this).next().remove();
-                $(this).remove();
+                $this.parent('.content').append('<div class="item"></div><div class="item-divider"></div>');
+                $this.next().remove();
+                $this.remove();
             }
         })
     }
 
-    return { addItem, deleteItem }
+
+
+    return { addItem, deleteItem, completeItem }
 })();
 
 export default list;

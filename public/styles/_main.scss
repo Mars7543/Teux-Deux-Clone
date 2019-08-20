@@ -6,6 +6,10 @@ main {
     flex-direction: row;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .list {
     width: 19vw;
     height: 90vh;
@@ -33,9 +37,9 @@ main {
         margin-top: 30px;
         width: 99%;
         flex-grow: 1;
-        // height: 100%;
 
         .item {
+            position: relative;
             color: #212121;
             font-size: $text-base; 
             margin: 10px auto;
@@ -61,6 +65,14 @@ main {
             white-space: pre;
         }
 
+        i.item-edit {
+            color: $yellow;
+            float: right;
+            font-size: $text-xl;
+            margin-top: 12px;
+            display: none;
+        }
+
         .item-divider {
             border-bottom: 1px dotted $grey;
             height: .5px;
@@ -69,7 +81,6 @@ main {
 }
 
 i.material-icons.navigation{
-    cursor: pointer;
     color: #03A9F4;
     font-size: $text-5xl !important;
     position: absolute;
